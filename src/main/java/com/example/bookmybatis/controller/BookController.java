@@ -43,4 +43,16 @@ public class BookController {
         return "redirect:/";
     }
 
+    @GetMapping(value = "/books/search")
+    public String searchForm() {
+        return "books/searchBookForm";
+    }
+
+    @PostMapping(value = "/books/search")
+    public String search(Book.Create form, Model model) {
+        List<Book.Simple> books = bookService.findCondBooks(form);
+        model.addAttribute("books", books);
+        return "books/bookList";
+    }
+
 }

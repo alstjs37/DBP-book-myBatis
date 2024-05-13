@@ -10,6 +10,7 @@ public interface MybatisBookRepository {
 
     List<BookEntity> findAll();
 
+    List<BookEntity> findCond(BookEntity bookEntity);
     Optional<BookEntity> findById(Long bookId);
 
     void update(BookEntity bookEntity);
