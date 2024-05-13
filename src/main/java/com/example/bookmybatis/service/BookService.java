@@ -28,4 +28,13 @@ public class BookService {
         }
         return list;
     }
+
+    public Long addBook(Book.Create bookForm) {
+        BookEntity bookEntity = new BookEntity();
+        bookEntity.setName(bookForm.getName());
+        bookEntity.setPublisher(bookForm.getPublisher());
+        bookEntity.setPrice(bookForm.getPrice());
+        bookRepository.save(bookEntity);
+        return bookEntity.getId();
+    }
 }
