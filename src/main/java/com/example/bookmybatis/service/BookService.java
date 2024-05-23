@@ -56,4 +56,29 @@ public class BookService {
 
         return list;
     }
+
+    public BookEntity getBookById(Long bookId) {
+        return bookRepository.findById(bookId).orElseThrow(
+                IllegalArgumentException::new
+        );
+    }
+
+    public void updateBookService(Long bookId, Book.Update updateForm) {
+        BookEntity bookEntity = bookRepository.findById(bookId).orElseThrow(
+                IllegalArgumentException::new
+        );
+
+        bookEntity.setName(updateForm.getName());
+        bookEntity.setPublisher(updateForm.getPublisher());
+        bookEntity.setPrice(updateForm.getPrice());
+        bookRepository.update(bookEntity);
+    }
+
+    public void deleteBook(Long bookId) {
+        BookEntity bookEntity = bookRepository.findById(bookId).orElseThrow(
+                IllegalArgumentException::new
+        );
+
+        bookRepository.delete(bookEntity);
+    }
 }
